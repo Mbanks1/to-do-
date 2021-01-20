@@ -15,6 +15,8 @@ class App extends Component {
       [key]: value
     })
   }
+
+  
   addItem(){
     // create item with unique id
     const newItem= {
@@ -45,6 +47,17 @@ class App extends Component {
         <button
         onClick={() => this.addItem()}
         >Add Item</button>
+        <br>
+        </br>
+        <ul>
+          {this.state.list.map(item => {
+            return(
+              <li key={item.id}>{item.value.id}
+              <button onClick={() => this.deleteItem(item.id)}> </button>
+              </li>
+            )
+          })}
+        </ul>
         </div>
      );
   }
