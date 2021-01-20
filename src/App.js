@@ -5,11 +5,21 @@ class App extends Component {
   super(props);
 
   this.state={
-    newItems: "",
+    newItem:"",
     list: []
-  }
-  }
-  
+    }
+  };
+  addItem(){
+    // create item with unique id
+    const newItem= {
+    id: 1 + Math.random(),
+    value: this.state.newItem.slice()
+    };
+    // copy current list of items 
+    const list = [...this.state.list];
+
+    list.push(newItem);
+  };
   render() { 
     return ( 
       <div>
@@ -23,7 +33,6 @@ class App extends Component {
         <button
         onClick={() => this.addItem()}
         >Add Item</button>
-        
         </div>
      );
   }
