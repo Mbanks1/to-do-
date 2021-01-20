@@ -12,9 +12,19 @@ class App extends Component {
   
   render() { 
     return ( 
-      <> 
-      
-      </>
+      <div>
+        Add an Item...
+        <br></br>
+        <input 
+        type="text"
+        placeholder="type item here..."
+        value={this.updateInput("newItem", e.target.value)}
+        />
+        <button
+        onClick={() => this.addItem()}
+        >Add Item</button>
+        
+        </div>
      );
   }
 }
