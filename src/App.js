@@ -9,6 +9,10 @@ class App extends Component {
     list: []
     }
   };
+  updateInput(key, value){
+    //update react state
+
+  }
   addItem(){
     // create item with unique id
     const newItem= {
@@ -17,9 +21,15 @@ class App extends Component {
     };
     // copy current list of items 
     const list = [...this.state.list];
-
+    // add new item to list 
     list.push(newItem);
+    //update state with new list and rest newItem input 
+    this.setState({
+      list, 
+      newItem:"",
+    })
   };
+
   render() { 
     return ( 
       <div>
@@ -28,7 +38,7 @@ class App extends Component {
         <input 
         type="text"
         placeholder="type item here..."
-        value={this.updateInput("newItem", e.target.value)}
+        value={e => this.updateInput("newItem", e.target.value)}
         />
         <button
         onClick={() => this.addItem()}
