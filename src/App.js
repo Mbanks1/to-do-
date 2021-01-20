@@ -5,10 +5,11 @@ class App extends Component {
   super(props);
 
   this.state={
-    newItem:"",
-    list: []
+    list: [],
+    newItem:""
     }
   };
+  
   updateInput(key, value){
     //update react state
     this.setState({
@@ -16,10 +17,18 @@ class App extends Component {
     })
   }
 
-  
+  deleteItem(id){
+    //copy current list of items
+    const list = [...this.state.list];
+    //filter out item being deleted
+    const updatedList = list.filter(item => item.id !== id);
+
+    this.setState({list: updatedList})
+  }
+
   addItem(){
     // create item with unique id
-    const newItem= {
+    const newItem={
     id: 1 + Math.random(),
     value: this.state.newItem.slice()
     };
@@ -30,7 +39,7 @@ class App extends Component {
     //update state with new list and rest newItem input 
     this.setState({
       list, 
-      newItem:"",
+      newItem:""
     })
   };
 
@@ -42,7 +51,8 @@ class App extends Component {
         <input 
         type="text"
         placeholder="type item here..."
-        value={e => this.updateInput("newItem", e.target.value)}
+        value={this.state.newItem}
+        onChange={e => this.updateInput("newItem", e.target.value)}
         />
         <button
         onClick={() => this.addItem()}
@@ -52,8 +62,10 @@ class App extends Component {
         <ul>
           {this.state.list.map(item => {
             return(
-              <li key={item.id}>{item.value.id}
-              <button onClick={() => this.deleteItem(item.id)}> </button>
+              <li key={item.id}>
+              {item.value.id}
+              <button 
+              onClick={() => this.deleteItem(item.id)}> X </button>
               </li>
             )
           })}
