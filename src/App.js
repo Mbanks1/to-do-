@@ -11,7 +11,9 @@ class App extends Component {
   };
   updateInput(key, value){
     //update react state
-
+    this.setState({
+      [key]: value
+    })
   }
   addItem(){
     // create item with unique id
